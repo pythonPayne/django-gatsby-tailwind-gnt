@@ -1,0 +1,10 @@
+django-app/venv
+django-app/db.sqlite3
+*.log
+*.pot
+*.pyc
+__pycache__/
+
+gatsby-app/node_modules
+gatsby-app/.cache
+gatsby-app/public
