@@ -1,11 +1,21 @@
 import React from 'react'
+import { graphql } from "gatsby"
+import Layout from '../components/Layout'
 
-const Index = () => {
+const Index = ({data}) => {
   return (
-    <div className="text-3xl text-blue-500">
-      Hello World
-    </div>
+    <Layout>
+      {data.DJANGO.hello}
+    </Layout>
   )
 }
 
 export default Index
+
+export const query = graphql`
+  query {
+    DJANGO {
+      hello
+    }
+  }
+`

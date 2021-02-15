@@ -17,6 +17,7 @@
     "autoprefixer": "^10.2.4",
     "gatsby": "^2.26.1",
     "gatsby-plugin-postcss": "^3.7.0",
+    "gatsby-source-graphql": "^2.14.0",
     "postcss": "^8.2.6",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
