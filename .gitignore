@@ -4,6 +4,7 @@ django-app/db.sqlite3
 *.pot
 *.pyc
 __pycache__/
+django-app/users.json
 
 gatsby-app/node_modules
 gatsby-app/.cache
