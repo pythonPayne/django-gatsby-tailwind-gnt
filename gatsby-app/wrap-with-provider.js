@@ -1,9 +1,30 @@
 import React from 'react'
-import { Provider } from 'react-redux'
+import {
+  ApolloClient,
+  ApolloProvider,
+  InMemoryCache,
+} from '@apollo/client'
 
+import { Provider } from 'react-redux'
 import createStore from './src/redux/store'
 
-export default ({ element }) => {
+const wrapRootElement = ({ element }) => {
+
+    const client = new ApolloClient({
+        uri: 'http://0.0.0.0:5000/graphql/',
+        cache: new InMemoryCache()
+      });
+      
     const store = createStore()
-    return <Provider store={store}>{element}</Provider>
+
+    return (
+        <ApolloProvider client={client}>
+            <Provider store={store}>
+                {element}
+            </Provider>        
+        </ApolloProvider>
+    )
 }
+
+
+export default wrapRootElement

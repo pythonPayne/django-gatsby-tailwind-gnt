@@ -14,6 +14,7 @@ const Layout = ({ children }) => {
             <div className={`flex space-x-4`}>
                 <div><Link to="/">Home</Link></div>
                 <div><Link to="/about">About</Link></div>
+                <div><Link to="/register">Register</Link></div>
             </div>
             <button                 
                 className={`focus:outline-none`}
