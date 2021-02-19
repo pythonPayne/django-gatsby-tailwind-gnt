@@ -15,6 +15,7 @@ const Layout = ({ children }) => {
                 <div><Link to="/">Home</Link></div>
                 <div><Link to="/about">About</Link></div>
                 <div><Link to="/register">Register</Link></div>
+                <div><Link to="/login">Login</Link></div>
             </div>
             <button                 
                 className={`focus:outline-none`}

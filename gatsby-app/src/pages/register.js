@@ -23,10 +23,7 @@ const Register = () => {
   const [password2, setPassword2] = useState('')
   const [registerUser, { data }] = useMutation(REGISTER_USER);
 
- useEffect(() => {
-     console.log(data)
-     // working!
-     // next: configure storing username and token with redux
+ useEffect(() => {          
      if (data && data.register.success) {
         setEmail('')
         setUsername('')
