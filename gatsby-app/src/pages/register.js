@@ -12,8 +12,6 @@ const REGISTER_USER = gql`
     ) {
       success
       errors
-      token
-      refreshToken
     }
   }
 `

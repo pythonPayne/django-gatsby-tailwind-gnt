@@ -9,5 +9,9 @@ module.exports = {
         url: "http://0.0.0.0:5000/graphql/",
       },
     },
+    {
+      resolve: `gatsby-plugin-create-client-paths`,
+      options: { prefixes: [`/app/*`] },
+    },
   ],
 }
