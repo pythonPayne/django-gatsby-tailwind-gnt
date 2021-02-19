@@ -6,7 +6,7 @@ import {
 } from '@apollo/client'
 
 import { Provider } from 'react-redux'
-import createStore from './src/redux/store'
+import store from './src/redux/store'
 
 const wrapRootElement = ({ element }) => {
 
@@ -15,7 +15,7 @@ const wrapRootElement = ({ element }) => {
         cache: new InMemoryCache()
       });
       
-    const store = createStore()
+    // const store = createStore()
 
     return (
         <ApolloProvider client={client}>

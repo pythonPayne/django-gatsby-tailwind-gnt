@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { gql, useMutation } from '@apollo/client'
+import { useDispatch } from 'react-redux'
+import { loginUser } from '../redux/actions/auth'
 import Layout from '../components/Layout'
 
-const LOGIN_USER = gql`
-  mutation LOGIN_USER($username: String!, $password: String!){
+const TOKEN_AUTH = gql`
+  mutation TOKEN_AUTH($username: String!, $password: String!){
     tokenAuth(username: $username, password: $password) {
       success
       errors
@@ -23,7 +25,8 @@ const LOGIN_USER = gql`
 const Login = () => {  
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')  
-  const [loginUser, { data }] = useMutation(LOGIN_USER);
+  const [tokenAuth, { data }] = useMutation(TOKEN_AUTH);
+  const dispatch = useDispatch()
 
  useEffect(() => {
      console.log(data)
@@ -31,16 +34,21 @@ const Login = () => {
      // next: configure storing username and token with redux
      if (data && data.tokenAuth.success) {        
         setUsername('')
-        setPassword('')        
+        setPassword('')
+        dispatch(loginUser({
+          username: data.tokenAuth.user.username,
+          token: data.tokenAuth.token,
+          refreshToken: data.tokenAuth.refreshToken
+        }))        
       }
      return () => {
          console.log('cleaning...')
      }
- }, [data])
+ }, [data, dispatch])
 
   const handleFormSubmit = (e) => {
       e.preventDefault()
-      loginUser({ variables: {username, password} })      
+      tokenAuth({ variables: {username, password} })      
   }
   
   return (
