@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -144,6 +145,8 @@ AUTHENTICATION_BACKENDS = [
 GRAPHQL_JWT = {
     "JWT_VERIFY_EXPIRATION": True,
     "JWT_LONG_RUNNING_REFRESH_TOKEN": True,
+    "JWT_EXPIRATION_DELTA": timedelta(minutes=60),
+    "JWT_REFRESH_EXPIRATION_DELTA": timedelta(days=7),
     "JWT_ALLOW_ANY_CLASSES": [
         "graphql_auth.mutations.Register",
         "graphql_auth.mutations.VerifyAccount",
@@ -159,6 +162,17 @@ GRAPHQL_JWT = {
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+GRAPHQL_AUTH = {
+    "ALLOW_LOGIN_NOT_VERIFIED": False,
+    "EMAIL_FROM": "django-app@email.com",
+    "EMAIL_TEMPLATE_VARIABLES": {
+        "protocol": "http",
+        "frontend_domain": "localhost:8000",
+        "path": "app"
+    }
+}
+
 
 CORS_ALLOWED_ORIGINS = [
     "http://0.0.0.0:8000",

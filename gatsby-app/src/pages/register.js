@@ -46,7 +46,7 @@ const Register = () => {
   return (
     <Layout>      
         <div>
-            <form onSubmit={(e) => handleFormSubmit(e)} className={`flex space-x-4`}>
+            <form onSubmit={(e) => handleFormSubmit(e)} className={`flex flex-col`}>
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className={`border border-black`}/>
             <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} className={`border border-black`}/>
             <input type="password" value={password1} onChange={(e) => setPassword1(e.target.value)} className={`border border-black`}/>
