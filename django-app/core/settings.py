@@ -44,7 +44,9 @@ INSTALLED_APPS = [
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
     'corsheaders',
     'users',
-
+    'gnt',
+    'testapp',
+    'sermons',
 ]
 
 MIDDLEWARE = [
@@ -127,6 +129,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = '/media/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 
 AUTH_USER_MODEL = "users.CustomUser"
 
@@ -177,5 +187,6 @@ GRAPHQL_AUTH = {
 CORS_ALLOWED_ORIGINS = [
     "http://0.0.0.0:8000",
     "http://localhost:8000",
-    "http://127.0.0.1:8000"
+    "http://127.0.0.1:8000",
+    "http://192.168.1.6:8000",
 ]

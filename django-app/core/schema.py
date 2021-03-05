@@ -1,5 +1,7 @@
 import graphene
-
+import gnt.schema
+import testapp.schema
+import sermons.schema
 from graphql_auth.schema import UserQuery, MeQuery
 from graphql_auth import mutations
 
@@ -25,11 +27,13 @@ class AuthMutation(graphene.ObjectType):
     revoke_token = mutations.RevokeToken.Field()
 
 
-class Query(UserQuery, MeQuery, graphene.ObjectType):
+class Query(UserQuery, MeQuery, gnt.schema.Query, testapp.schema.Query,
+            sermons.schema.Query, graphene.ObjectType):
     hello = graphene.String(default_value="Hello from Django!")
 
 
-class Mutation(AuthMutation, graphene.ObjectType):
+class Mutation(AuthMutation, testapp.schema.Mutation,
+               sermons.schema.Mutation, graphene.ObjectType):
     pass
 
 

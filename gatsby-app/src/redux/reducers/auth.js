@@ -1,13 +1,15 @@
 import {
-    LOGIN_USER
+    LOGIN_USER, 
+    LOGOUT_USER, 
+    REFRESH_USER
 } from "../types"
 
 const initialState = {
-    user: {
-        username: null,
-        token: null,
-        refreshToken: null
-    },
+    username: null,
+    token: null,
+    refreshToken: null,
+    exp: null,
+    origIat: null
 }
 
 export default function (state = initialState, action) {
@@ -15,12 +17,20 @@ export default function (state = initialState, action) {
         case LOGIN_USER:
             return {
                 ...state,
-                user: {
-                    username: action.payload.username,
-                    token: action.payload.token,
-                    refreshToken: action.payload.refreshToken,
-                }                
+                username: action.payload.username,
+                token: action.payload.token,
+                refreshToken: action.payload.refreshToken,
+            }                
+        case REFRESH_USER:
+            return {
+                username: action.payload.username,
+                token: action.payload.token,
+                refreshToken: action.payload.refreshToken,
+                exp: action.payload.exp,
+                origIat: action.payload.origIat
             }
+        case LOGOUT_USER:
+            return initialState
         default:
             return state
     }

@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react'
+import { Link } from 'gatsby'
+import Layout from '../components/Layout'
 import { gql, useMutation } from '@apollo/client'
 
 const ACTIVATE_USER = gql`
@@ -23,11 +25,23 @@ const Activate = ({ activationID }) => {
     }, [activationID, activateUser])
     console.log(data)
     return (
-        <div>
-            {data && data.verifyAccount.success && <div>Success! Link to login...</div>}
-            {data && !data.verifyAccount.success && <div>{data.verifyAccount.errors.nonFieldErrors[0].message} Link to login...</div>}
+        <Layout>
+            {data && data.verifyAccount.success && 
+              <>
+                <div>Account activated!</div>
+                <Link to="/app/login">Login</Link>
+              </>
+            }
+            
+            {data && !data.verifyAccount.success && 
+              <>
+                <div>{data.verifyAccount.errors.nonFieldErrors[0].message}</div>
+                <Link to="/app/login">Login</Link>
+              </>
+            }
+
             {data === undefined && <div>Send link again...</div>}
-        </div>
+        </Layout>
     )
 }
 
